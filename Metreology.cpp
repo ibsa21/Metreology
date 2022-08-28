@@ -12,33 +12,31 @@ respond to user queries for the temperature analysis */
 #include <cstdlib>
 using namespace std;
 
-// declaration of variables used throught the program as global variables
 int i, j, k;
-int monthNumber, dayNumber; // number of months and days for each months user wants to store a temperature for
+int monthNumber, dayNumber; 
 double averageDayTemp, averageMonthTemp, highest_temp_month, lowest_temp_month, tempSumDay, tempSumMonth;
 
 string monthsName [12] = {"Meskerem", "Tikimt", "Hidar", "Tayisas", "Tir", "Yekatit", "Megabit",
                                  "Meyaziya", "Ginbot", "Sane", "Hamile", "Nase"};
 
-double tempRecord[12][30][3]; // stores temperature the user records for the whole year
-double tempSumMonthArray [12];  //stores summation or total temperature recorded for each month
-double averageMonthTemperature [12]; // stores the average temperature stored for each month
+double tempRecord[12][30][3]; 
+double tempSumMonthArray [12];  
+double averageMonthTemperature [12];
 
-void userQueryCalling();   // function that asks the user what they want to do with the data of temperature recorded
-void any_days_highest_lowest_temp(double array[][30][3]); // finds highest and lowest temperature for any days
-void highest_lowest_temp_month(double array[][30][3]); // finds highest and lowest temperature for a given month
-void sortingTemperature (double array[][30][3], int);  // sort's temperature from smallest to highest throughough the year
-void highest_lowest_temp_year(double array[][30][3]);  // finds highest and lowest temperature recorded throught the year
-void average_month_temp_print(double array[], int);    // prints tabular format of average month temperature for the whole year
-void navigateBack();                                   // function that helps the user to navigate back to where they were in the Query page
-string unit = "\370C";     // to append degree celsius notation the number
+void userQueryCalling(); 
+void any_days_highest_lowest_temp(double array[][30][3]); 
+void highest_lowest_temp_month(double array[][30][3]); 
+void sortingTemperature (double array[][30][3], int);  
+void highest_lowest_temp_year(double array[][30][3]);  
+void average_month_temp_print(double array[], int);   
+void navigateBack();                                   
 
 int main()
 {
-    string highLowTempString [2] = {"high", "low"}; // tells the user whether a temperature he/ she is recording is high or low
+    string highLowTempString [2] = {"high", "low"};
     cout << "               Ethiopian Metreology Agency \n";
     cout << "Please enter a number of  month's you would like to a store temperature for \n";
-    monthWrongInput:  // to redirect user to enter the month and day number again if wrong number inputed at first
+    monthWrongInput:  
     cin >> monthNumber; 
     if(!(monthNumber>=1 && monthNumber<=12)) {
     	
@@ -166,15 +164,15 @@ void highest_lowest_temp_month(double array[][30][3])
 void highest_lowest_temp_year(double array[][30][3])
 {
     system("cls");
-    int indexMax1, indexMax2, indexMin1, indexMin2; //captures indexes of day and month the maximum, and miminum temperature is recorded 
-    highest_temp_month = array[0][0][0];  // initializes highest and lowest temp from starting.
+    int indexMax1, indexMax2, indexMin1, indexMin2; 
+    highest_temp_month = array[0][0][0];  
     lowest_temp_month = array[0][0][1];
     for ( i = 0; i < monthNumber; i++)
         for ( j = 0; j < dayNumber; j++) {
                 if(highest_temp_month <= array[i][j][0]) {
                     highest_temp_month = array[i][j][0];
-                    indexMax1 = i;   // captures the index of the month highest temperature is stored on
-                    indexMax2 = j;   // captures the indext of the day on which the highest tempereture is recorded on
+                    indexMax1 = i;   
+                    indexMax2 = j;   
                 }
                 if(lowest_temp_month >= array[i][j][1]) {
                     lowest_temp_month = array[i][j][1];
@@ -199,8 +197,8 @@ void sortingTemperature(double array[][30][3], int x){
              for ( k = 0 ; k < 3 ; k++ )
                     for ( b = 0 ; b < dayNumber ; b++ )
                         for ( c = 0 ; c < 3 ; c++ )
-                            if (array[x-1][j][k] < array[x-1][b][c]){ // if arrays of elements on the LHS is less than those on the RHS
-                                temp = array[x-1][j][k];   // switch both temperatures and their indexes
+                            if (array[x-1][j][k] < array[x-1][b][c]){ 
+                                temp = array[x-1][j][k];  
                                 array[x-1][j][k] = array[x-1][b][c];
                                 array[x-1][b][c] = temp;}
 }
